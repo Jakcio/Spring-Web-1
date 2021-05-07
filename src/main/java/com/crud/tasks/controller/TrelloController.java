@@ -18,20 +18,8 @@ public class TrelloController {
     private final TrelloClient trelloClient;
 
     @GetMapping("getTrelloBoards")
-    public void getTrelloBoards() {
-        List<TrelloBoardsDto> trelloBoards = trelloClient.getTrelloBoards();
-        trelloBoards.forEach(trelloBoardsDto -> {
-            System.out.println(trelloBoardsDto.getId() + " " + trelloBoardsDto.getName());
-
-            System.out.println("This board contains lists: ");
-
-            trelloBoardsDto.getLists().forEach(trelloList -> {
-                System.out.println(
-                        trelloList.getName() + " - " + trelloList.getId() + " - " + trelloList.isClosed()
-                );
-            });
-
-        });
+    public List<TrelloBoardsDto> getTrelloBoards() {
+        return trelloClient.getTrelloBoards();
     }
 
     @PostMapping("createTrelloCard")
